@@ -1,0 +1,27 @@
+:host { display:block; }
+.page { min-height:100vh; padding:24px; background:#f7f6f2; color:#28251d; font-family:'Satoshi', sans-serif; }
+.card { background:#fffdf8; border:1px solid rgba(0,0,0,.08); border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,.06); }
+.hero { display:flex; justify-content:space-between; gap:20px; padding:24px; margin-bottom:20px; align-items:flex-start; }
+.eyebrow { text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:#01696f; font-weight:700; }
+h1 { margin:6px 0 10px; font-size:40px; line-height:1.05; }
+.muted { color:#6d6a63; }
+.hero-actions { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+button { border:0; border-radius:999px; background:#01696f; color:#fff; padding:12px 16px; cursor:pointer; }
+.kpi { background:#ecf4f2; padding:12px 16px; border-radius:999px; }
+.layout { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+.list-card, .detail-card { padding:20px; }
+.rows { display:grid; gap:12px; }
+.row { width:100%; display:flex; justify-content:space-between; align-items:center; text-align:left; background:#f9f8f5; color:#28251d; padding:14px 16px; }
+.small { font-size:13px; margin-top:4px; }
+.score-block { display:flex; align-items:center; gap:10px; }
+.badge { padding:6px 10px; border-radius:999px; font-size:12px; text-transform:capitalize; }
+.badge.critical, .badge.high { background:#f8e8ea; color:#a13544; }
+.badge.medium { background:#fdf1df; color:#da7101; }
+.badge.low { background:#eaf4e3; color:#437a22; }
+.meta-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin:18px 0; }
+.meta-grid div { background:#f9f8f5; padding:12px; border-radius:14px; }
+.meta-grid span { display:block; color:#6d6a63; font-size:12px; margin-bottom:4px; }
+.ask-box { display:flex; gap:10px; margin-top:18px; }
+.ask-box input { flex:1; padding:12px 14px; border-radius:12px; border:1px solid rgba(0,0,0,.1); }
+.answer { margin-top:14px; padding:14px; border-radius:14px; background:#f1f6f5; white-space:pre-wrap; }
+@media (max-width: 900px) { .layout { grid-template-columns:1fr; } .hero { flex-direction:column; } .meta-grid { grid-template-columns:1fr 1fr; } h1 { font-size:32px; } }

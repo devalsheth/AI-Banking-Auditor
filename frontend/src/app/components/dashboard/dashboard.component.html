@@ -1,0 +1,71 @@
+<div class="page">
+  <div class="card hero">
+    <div>
+      <div class="eyebrow">Banking Audit Assistant</div>
+      <h1>NexusAuditAI</h1>
+      <p class="muted">Synthetic audit data, risk prioritization, and guardrailed question answering.</p>
+    </div>
+
+    <div class="hero-actions">
+      <div class="kpi">Critical: {{ criticalCount() }}</div>
+      <div class="kpi">Avg score: {{ avgScore() }}</div>
+      <button (click)="refresh()">Refresh data</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card list-card">
+      <h3>Audit items</h3>
+      <div class="rows">
+        <button class="row" *ngFor="let item of items()" (click)="pick(item)">
+          <div>
+            <strong>{{ item.area }}</strong>
+            <div class="small muted">{{ item.owner }} • {{ item.branchType }} • {{ item.productLine }}</div>
+          </div>
+          <div class="score-block">
+            <span class="badge" [class]="item.level">{{ item.level }}</span>
+            <strong>{{ item.score }}</strong>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="card detail-card" *ngIf="selected() as s">
+      <h3>{{ s.area }}</h3>
+      <p class="muted">{{ s.note }}</p>
+
+      <div class="meta-grid">
+        <div><span>Owner</span>{{ s.owner }}</div>
+        <div><span>Branch</span>{{ s.branchType }}</div>
+        <div><span>Product</span>{{ s.productLine }}</div>
+        <div><span>Level</span>{{ s.level }}</div>
+      </div>
+
+      <h4>Recommendation</h4>
+      <p>{{ s.recommendation }}</p>
+
+      <div class="ask-box">
+        <input [(ngModel)]="question" placeholder="Ask a banking audit question..." />
+        <button (click)="ask()">Ask agent</button>
+      </div>
+
+      <div class="answer" *ngIf="response() as res">
+        <div class="small muted">Type: {{ res.type }} | In scope: {{ res.in_scope }}</div>
+        <p>{{ res.answer }}</p>
+
+        <div *ngIf="res.guardrails as g" class="guardrail-box">
+          <div class="small muted">Allowed: {{ g.allowed }} | Human review: {{ g.human_review_required }}</div>
+          <div class="small muted">PII findings: {{ g.pii_redaction.findings.length }}</div>
+          <div *ngIf="g.pii_redaction.findings.length > 0" class="small">
+            Redacted: {{ g.pii_redaction.redacted }}
+          </div>
+        </div>
+
+        <div *ngIf="res.context?.length" class="small">
+          <strong>Context:</strong>
+          <div *ngFor="let c of res.context">• {{ c.source }} - {{ c.text }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
